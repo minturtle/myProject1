@@ -1,21 +1,19 @@
 package domain;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 public final class Restraurent {
     private Long id;
     private String name;
     private String address;
-    private Set<Menu> menuList;
+    private Collection<Menu> menuList;
     private Category category;
 
     public Restraurent(Long id, String name, String address, Collection<Menu> menuCollection, Category category) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.menuList = new HashSet<>(menuCollection);
+        this.menuList = menuCollection;
         this.category = category;
     }
 
@@ -35,7 +33,7 @@ public final class Restraurent {
         return address;
     }
 
-    public Set<Menu> getMenuList() {
+    public Collection<Menu> getMenuList() {
         return menuList;
     }
 

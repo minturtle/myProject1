@@ -4,10 +4,16 @@ public final class Menu {
     private Long id;
     private String name;
     private int price;
-    public Menu(Long id, String name, int price) {
+    private Restraurent restraurent;
+    public Menu(Long id, String name, int price, Restraurent restraurent) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.restraurent = restraurent;
+    }
+
+    public Restraurent getRestraurent() {
+        return restraurent;
     }
 
     public Long getId() {

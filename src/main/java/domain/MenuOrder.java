@@ -5,12 +5,14 @@ public final class MenuOrder {
     private Order order;
     private Menu menu;
     private int count;
+    private User user;
 
-    public MenuOrder(Long id, Menu menu, int count) {
+    public MenuOrder(Long id, Menu menu, int count, User user) {
         this.id = id;
         this.order = null;
         this.menu = menu;
         this.count = count;
+        this.user= user;
     }
 
     public Long getId() {
@@ -25,6 +27,10 @@ public final class MenuOrder {
         return menu;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public int getCount() {
         return count;
     }
@@ -35,5 +41,9 @@ public final class MenuOrder {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

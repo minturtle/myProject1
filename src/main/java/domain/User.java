@@ -1,50 +1,41 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 public class User {
-    private Long id;
+    private String id;
+    private String pw;
     private String address;
-    private List<MenuOrder> cart;
-    private List<Order> orders;
     private Set<Payment> payments;
+    private String phoneNum;
 
-    public User(Long id, String address, Set<Payment> payments) {
+    public User(String id, String pw, String address, String phoneNum) {
         this.id = id;
+        this.pw = pw;
         this.address = address;
-        this.cart = new ArrayList<>();
-        this.orders = new ArrayList<>();
-        this.payments = payments;
+        this.payments = new HashSet<>();
+        this.phoneNum = phoneNum;
     }
 
-    public void addCart(MenuOrder menuOrder){
-        cart.add(menuOrder);
+    public String getPhoneNum() {
+        return phoneNum;
     }
-    public void addOrder(Order order){
-        orders.add(order);
-    }
+
     public boolean addPayment(Payment payment){
         return payments.add(payment);
     }
-
-    public Long getId() {
+    public String getId() {
         return id;
+    }
+
+    public String getPassword() {
+        return pw;
     }
 
     public String getAddress() {
         return address;
     }
-
-    public List<MenuOrder> getCart() {
-        return cart;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
     public Set<Payment> getPayments() {
         return payments;
     }

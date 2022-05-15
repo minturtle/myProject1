@@ -4,30 +4,27 @@ import domain.Category;
 import domain.Menu;
 import domain.Restraurent;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class RestService {
     public Collection<Restraurent> findRestByCategory(Category category){
-        System.out.println("RestService.findRestByCategory " + category.toString());
-
         return initTestSet();
     }
 
     private Collection<Restraurent> initTestSet() {
-        Set<Menu> BBQmenuSet = new HashSet<>();
-        BBQmenuSet.add(new Menu(16L, "황금올리브치킨", 20000));
-        BBQmenuSet.add(new Menu(17L, "핫황금올리브치킨", 21000));
-        BBQmenuSet.add(new Menu(18L, "황금올리브닭다리", 21000));
-        BBQmenuSet.add(new Menu(19L, "자메이카통다리치킨", 21500));
-        BBQmenuSet.add(new Menu(20L, "크런치버터치킨", 24000));
-        BBQmenuSet.add(new Menu(21L, "황금올리브치킨콤보", 24000));
+
+        Restraurent bbq = new Restraurent(0L, "BBQ", null, new HashSet<>(), Category.치킨);
+
+        bbq.getMenuList().add(new Menu(16L, "황금올리브치킨", 20000, bbq));
+        bbq.getMenuList().add(new Menu(17L, "핫황금올리브치킨", 21000, bbq));
+        bbq.getMenuList().add(new Menu(18L, "황금올리브닭다리", 21000, bbq));
+        bbq.getMenuList().add(new Menu(19L, "자메이카통다리치킨", 21500, bbq));
+        bbq.getMenuList().add(new Menu(20L, "크런치버터치킨", 24000, bbq));
+        bbq.getMenuList().add(new Menu(21L, "황금올리브치킨콤보", 24000, bbq));
 
 
         Set<Restraurent> restraurentLi = new HashSet<>();
-        restraurentLi.add(new Restraurent(0L, "BBQ", null,BBQmenuSet, Category.치킨));
+        restraurentLi.add(bbq);
         restraurentLi.add(new Restraurent(1L, "교촌치킨", null,new ArrayList<>(),  Category.치킨));
         restraurentLi.add(new Restraurent(2L, "자담치킨", null,new ArrayList<>(),  Category.치킨));
         restraurentLi.add(new Restraurent(3L, "노랑통닭", null,new ArrayList<>(),  Category.치킨));
@@ -43,6 +40,7 @@ public class RestService {
         restraurentLi.add(new Restraurent(13L, "ㅇㅇ치킨", null,new ArrayList<>(),  Category.치킨));
         restraurentLi.add(new Restraurent(14L, "ㅈㅈ치킨", null,new ArrayList<>(),  Category.치킨));
         restraurentLi.add(new Restraurent(15L, "60계 치킨", null,new ArrayList<>(),  Category.치킨));
+
         return restraurentLi;
     }
 }

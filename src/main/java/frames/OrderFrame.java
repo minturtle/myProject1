@@ -1,6 +1,7 @@
 package frames;
 
 import domain.Menu;
+import domain.User;
 import service.OrderService;
 
 
@@ -21,11 +22,15 @@ public class OrderFrame extends JFrame {
 	private JSpinner spinner;
 	private JLabel totalPriceLabel;
 	private JButton cartAddBtn;
+
+
 	private OrderService orderService;
+	private User user;
 
-	public OrderFrame(Menu menu, OrderService orderService) {
+	public OrderFrame(User user, Menu menu, OrderService orderService) {
 		this.orderService = orderService;
-
+		setTitle("Ï£ºÎ¨∏ÌïòÍ∏∞");
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -40,11 +45,11 @@ public class OrderFrame extends JFrame {
 		
 		menuNameLabel = new JLabel(menu.getName());
 		menuNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		menuNameLabel.setFont(new Font("±º∏≤", Font.PLAIN, 20));
-		menuNameLabel.setBounds(154, 26, 129, 49);
+		menuNameLabel.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 20));
+		menuNameLabel.setBounds(120, 26, 200, 49);
 		centerPane.add(menuNameLabel);
 		
-		priceLabel = new JLabel("∞°∞› : " + menu.getPrice() + "ø¯");
+		priceLabel = new JLabel("Í∞ÄÍ≤© : " + menu.getPrice() + "Ïõê");
 		priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		priceLabel.setBounds(164, 75, 85, 27);
 		centerPane.add(priceLabel);
@@ -53,35 +58,35 @@ public class OrderFrame extends JFrame {
 		spinner.setBounds(128, 166, 30, 22);
 		contentPane.add(spinner);
 		
-		JLabel lblNewLabel_1 = new JLabel("ºˆ∑Æ");
+		JLabel lblNewLabel_1 = new JLabel("ÏàòÎüâ");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("±º∏≤", Font.PLAIN, 14));
+		lblNewLabel_1.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(51, 161, 65, 30);
 		contentPane.add(lblNewLabel_1);
 		
-		totalPriceLabel = new JLabel("∞°∞› :"+menu.getPrice()+"ø¯");
-		totalPriceLabel.setFont(new Font("±º∏≤", Font.PLAIN, 15));
+		totalPriceLabel = new JLabel("Í∞ÄÍ≤© :"+menu.getPrice()+"Ïõê");
+		totalPriceLabel.setFont(new Font("ÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 15));
 		totalPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		totalPriceLabel.setBounds(278, 165, 106, 22);
 		contentPane.add(totalPriceLabel);
 		
-		cartAddBtn = new JButton("1∞≥ ¥„±‚");
+		cartAddBtn = new JButton("1Í∞ú Îã¥Í∏∞");
 		cartAddBtn.setBounds(0, 208, 436, 55);
 		contentPane.add(cartAddBtn);
 
 		spinner.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				int totalPrice = Integer.parseInt(spinner.getValue().toString()) + menu.getPrice();
-				totalPriceLabel.setText("∞°∞› :" +totalPrice + "ø¯");
-				cartAddBtn.setText(spinner.getValue().toString() + "∞≥ ¥„±‚");
+				int totalPrice = Integer.parseInt(spinner.getValue().toString()) * menu.getPrice();
+				totalPriceLabel.setText("Í∞ÄÍ≤© :" +totalPrice + "Ïõê");
+				cartAddBtn.setText(spinner.getValue().toString() + "Í∞ú Îã¥Í∏∞");
 			}
 		});
 
 		cartAddBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				orderService.addCart(menu, Integer.parseInt(spinner.getValue().toString()));
+				orderService.addCart(user,menu, Integer.parseInt(spinner.getValue().toString()));
 				dispose();
 			}
 		});

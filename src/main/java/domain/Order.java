@@ -11,13 +11,15 @@ public final class Order {
     private User buyer;
     private Payment payment;
     private LocalDateTime orderedTime;
+    private Restraurent restraurent;
 
-    public Order(Long id, User buyer, Payment payment, Collection<MenuOrder> menuOrderCollection) {
+    public Order(Long id, User buyer, Payment payment, Collection<MenuOrder> menuOrderCollection, Restraurent restraurent) {
         this.id = id;
         this.buyer = buyer;
         this.payment = payment;
         this.menuOrders = new ArrayList<>(menuOrderCollection);
         orderedTime = LocalDateTime.now();
+        this.restraurent = restraurent;
     }
 
     public Long getId() {
@@ -40,6 +42,9 @@ public final class Order {
         return orderedTime;
     }
 
+    public Restraurent getRestraurent() {
+        return restraurent;
+    }
 
     public int getTotalPrice(){
         return menuOrders.stream().mapToInt(MenuOrder::getTotalPrice).sum();
